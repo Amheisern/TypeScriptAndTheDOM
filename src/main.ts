@@ -52,6 +52,11 @@ const allSquares = document.querySelectorAll('li')
 allSquares.forEach((square) =>
   square.addEventListener('click', handleClickSquare)
 )
+// optional code using bubble... calling the entire list of li
+// by letting the parent (ul) listen for the event 'click'
+// const gameBoard = document.querySelector('ul')
+// if (gameBoard instanceof HTMLUListElement) {
+// gameBoard.addEventListener('click', handleClickSquare)}
 
 // import './style.css'
 
