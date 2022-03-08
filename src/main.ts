@@ -1,4 +1,7 @@
 import './style.css'
+
+let currentPlayer: 'X' | 'O' = 'X'
+// This means that currentPlayer is a string, but can *only* be the string X or the string O
 // Defines a method for us to handle the click
 function handleClickSquare(event: MouseEvent) {
   // Get the target of the click
@@ -10,7 +13,14 @@ function handleClickSquare(event: MouseEvent) {
   // the thingClickedOn is an LI element, and thus we can
   // change its textContent
   if (thingClickedOn instanceof HTMLLIElement) {
-    thingClickedOn.textContent = 'X'
+    thingClickedOn.textContent = currentPlayer
+    // If currentPlayer is precisely the text 'X', make the currentPlayer 'O'
+    if (currentPlayer === 'X') {
+      currentPlayer = 'O'
+    } else {
+      // Otherwise it was already 'O', so make it an 'X'
+      currentPlayer = 'X'
+    }
   }
 }
 const allSquares = document.querySelectorAll('li')
