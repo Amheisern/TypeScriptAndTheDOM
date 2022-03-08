@@ -1,6 +1,10 @@
 import './style.css'
 
 let currentPlayer: 'X' | 'O' = 'X'
+
+let moveCounter = 0
+
+// See in the console we can look at the moveCounter as we click.
 // This means that currentPlayer is a string, but can *only* be the string X or the string O
 // Defines a method for us to handle the click
 function handleClickSquare(event: MouseEvent) {
@@ -13,13 +17,34 @@ function handleClickSquare(event: MouseEvent) {
   // the thingClickedOn is an LI element, and thus we can
   // change its textContent
   if (thingClickedOn instanceof HTMLLIElement) {
+    // Doesn't allow clicking the box more than once
+    //We do this by ENDING (returning) from the function
+    if (thingClickedOn.classList.contains('taken')) {
+      console.log('No')
+      return
+    }
+    // Then every time we make a good move:
+    // Increment the move counter
+    moveCounter++
     thingClickedOn.textContent = currentPlayer
+
+    //Adds the taken class so that we SHOW the user
+    // They can't select this item!
+    thingClickedOn.classList.add('taken')
+
     // If currentPlayer is precisely the text 'X', make the currentPlayer 'O'
     if (currentPlayer === 'X') {
       currentPlayer = 'O'
     } else {
       // Otherwise it was already 'O', so make it an 'X'
       currentPlayer = 'X'
+      // Get the header to query for the first `h1`
+      const header = document.querySelector('h1')
+      // Interpolate a string with the header and the count of moves
+      // and replace the text content of our header!
+      if (header instanceof HTMLHeadingElement) {
+        header.textContent = `Move ${moveCounter} of Tic Tac Toe`
+      }
     }
   }
 }
