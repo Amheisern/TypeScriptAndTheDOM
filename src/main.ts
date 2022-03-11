@@ -9,6 +9,7 @@ let moveCounter = 0
 // Defines a method for us to handle the click
 function handleClickSquare(event: MouseEvent) {
   // Get the target of the click
+  console.log(event)
   const thingClickedOn = event.target
   // If the thing clicked on is an LI Element
   // - This does several things:
